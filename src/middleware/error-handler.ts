@@ -7,6 +7,12 @@ import type {
 
 import { AppError } from "../errors.js";
 
+type JsonParseError = SyntaxError & {
+  status?: number;
+  type?: string;
+  body?: unknown;
+};
+
 export const errorHandler: ErrorRequestHandler = (
   error: unknown,
   _req: Request,
@@ -17,6 +23,21 @@ export const errorHandler: ErrorRequestHandler = (
     res.status(error.statusCode).json({
       message: error.message,
       statusCode: error.statusCode,
+    });
+
+    return;
+  }
+
+  const jsonError = error as JsonParseError;
+
+  if (
+    error instanceof SyntaxError &&
+    jsonError.status === 400 &&
+    jsonError.type === "entity.parse.failed"
+  ) {
+    res.status(400).json({
+      message: "Request body contains invalid JSON",
+      statusCode: 400,
     });
 
     return;

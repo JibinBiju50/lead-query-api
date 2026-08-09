@@ -1,7 +1,6 @@
 import express from "express";
-import { authenticate } from "./middleware/auth.js";
 import { errorHandler } from "./middleware/error-handler.js";
-
+import leadsRouter from "./routes/leads.js";
 const app = express();
 
 app.use(express.json());
@@ -13,18 +12,7 @@ app.get("/health", (_req, res) => {
   });
 });
 
-/**
- * Temporary route for checking authentication middleware.
- */
-app.get("/api/v1/auth/check", authenticate, (req, res) => {
-  res.status(200).json({
-    status: "success",
-    message: "Authentication headers are valid",
-    data: {
-      currentUser: req.currentUser,
-    },
-  });
-});
+app.use("/api/v1/leads", leadsRouter);
 
 /**
  * Error middleware must be registered after routes.
