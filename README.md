@@ -52,7 +52,7 @@ npm run seed
 
 The seed uses fixed UUIDs so the API can be tested consistently.
 
-Important seeded IDs:
+### Seeded IDs
 
 ```text
 Tenant A:        10000000-0000-4000-8000-000000000001
@@ -60,6 +60,11 @@ Admin A:         20000000-0000-4000-8000-000000000001
 Agent A1:        20000000-0000-4000-8000-000000000002
 Agent A2:        20000000-0000-4000-8000-000000000003
 Tenant A City:   aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa
+
+Tenant B:        10000000-0000-4000-8000-000000000002
+Admin B:         20000000-0000-4000-8000-000000000004
+Agent B1:        20000000-0000-4000-8000-000000000005
+Tenant B City:   bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb
 ```
 
 ### Run locally
