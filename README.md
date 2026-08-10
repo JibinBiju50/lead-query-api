@@ -177,9 +177,9 @@ Expected seeded leads: `Priya` and `Sita`.
 
 ## Time Spent
 
-Approximate time spent: **12 - 13 hours**.
+Approximate time spent: **16–17 hours**.
 
-This includes project setup, PostgreSQL schema and seed data, authentication and validation, query/filter implementation, debugging, integration testing, deployment setup, and documentation.
+This includes understanding the requirements, project and database setup, implementation, debugging, integration testing, deployment, and documentation.
 
 With another day, I would:
 
