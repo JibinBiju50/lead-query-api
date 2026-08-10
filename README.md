@@ -167,7 +167,7 @@ Expected leads: `Ram Kumar`, `Ramesh`, `Sita`.
 
 ## Time Spent
 
-Approximate time spent: **[replace with your actual time]**.
+Approximate time spent: **12 hours**.
 
 This includes project setup, database schema and seed data, authentication and validation, query/filter implementation, debugging, integration testing, and documentation.
 
