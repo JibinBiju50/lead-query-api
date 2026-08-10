@@ -3,14 +3,25 @@ import pg from "pg";
 
 const { Pool } = pg;
 
-
-export const pool = new Pool();
+/*
+ * Production providers commonly provide DATABASE_URL.
+ * Locally, when DATABASE_URL is absent, node-postgres
+ * automatically reads PGHOST, PGPORT, PGDATABASE,
+ * PGUSER and PGPASSWORD.
+ */
+export const pool = process.env.DATABASE_URL
+  ? new Pool({
+      connectionString: process.env.DATABASE_URL,
+    })
+  : new Pool();
 
 pool.on("error", (error) => {
-  console.error("Unexpected PostgreSQL pool error:", error);
+  console.error(
+    "Unexpected PostgreSQL pool error:",
+    error,
+  );
 });
 
-//verify the connection by running a SQL query
 export async function verifyDatabaseConnection(): Promise<void> {
   const result = await pool.query<{
     database_name: string;
@@ -24,11 +35,12 @@ export async function verifyDatabaseConnection(): Promise<void> {
   const connection = result.rows[0];
 
   if (!connection) {
-    throw new Error("PostgreSQL returned no connection information");
+    throw new Error(
+      "PostgreSQL returned no connection information",
+    );
   }
 
   console.log(
     `Connected to PostgreSQL database: ${connection.database_name}`,
   );
-  console.log(`Database time: ${connection.server_time}`);
 }
